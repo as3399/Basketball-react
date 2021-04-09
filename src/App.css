@@ -1,0 +1,69 @@
+.form form{
+  display: flex;
+  flex-direction:column;
+  width: 70%;
+  margin-left: 40px;
+  
+}
+.form input {
+  border:none;
+  outline:none;
+  margin-bottom: 30px;
+  padding: 10px 5px;
+  font-size: 18px;
+  border-bottom: 2px solid blue
+}
+.form input::placeholder{
+  font-size: 17px;
+  color: grey;
+}
+
+.form select{
+  border:none;
+  font-size: 18px;
+  outline:none;
+  border-bottom: 2px solid blue;
+  padding: 10px 5px;
+  background-color: white;
+  border:none;
+  outline:none;
+  margin-bottom: 30px;
+  padding: 10px 5px;
+  font-size: 18px;
+  border-bottom: 2px solid blue
+
+}
+
+#navbar {
+    display: flex;
+    background-color: grey;
+    margin-bottom: 40px;
+    font-size: larger;
+}
+.team{
+  width: 130px;
+  text-align: center;
+  padding: 25px 10px;
+  margin-left: 30px;
+  color: white;
+}
+.savebtn{
+  position: relative;
+  top: 40px;
+  left: 0px;
+  background-color: rgb(69, 69, 226);
+  color: white;
+  padding: 10px 20px;
+  outline: none;
+  border:none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.P2select{
+  width: 300px;
+  margin-left: 65px;
+}
+.P2select::placeholder{
+  width: 300px;
+  margin-left: 65px;
+}
