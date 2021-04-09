@@ -32,10 +32,14 @@ const ComposeTeam = (props) => {
                 <input type="text" onChange={InputEvent} value={props.data.fname} name="fname" placeholder="Enter First Name" required />
                 <input type="text" onChange={InputEvent} value={props.data.lname} name="lname" placeholder="Enter Last Name" required />
                 <input type="text" onChange={InputEvent} value={props.data.height} name="height" placeholder="Enter Height" required />
-                <SortableSelect  type="text" onChange={InputEvent} name="position" placeholder="Enter Position"
-                    options={options}
-                    onChange={InputEvent}
-                    />
+                <select  type="text" onChange={InputEvent} name="position" placeholder="Enter Position"
+                    ><option  value="Point Guard">Point Guard</option>
+                    <option value="Shooting Guard">Shooting Guard</option>
+                    <option value="Small Forward">Small Forward</option>
+                    <option value="Power Forward">Power Forward</option>
+                    <option value="The Center">The Center</option>
+                
+                        </select>
                 
                 <button type="submit" className="savebtn" onClick={()=>{console.log(props.Playerlist);
                     
