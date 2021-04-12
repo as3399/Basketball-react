@@ -1,73 +1,140 @@
 import React, { useEffect, useState } from "react"
+import { ValidateInfo2 } from "./ValidateForm";
 
 const FirstQuarter = (props) => {
     const [Page2data, setPage2data] = useState([]);
+    const [Index, setIndex] = useState(0);
+    const [errors, setErrors] = useState({});
+
     useEffect(() => {
         setPage2data(props.Playerlist);
-        console.log('dfdsfds',Page2data);
     }, [])
 
+    const dummydata = Page2data;
+
     function InputEvent(e) {
-        const name = e.target.value;
-        console.log(name);
-        Page2data.map((val)=>{ return val}).map((val1)=>{return (val1.disable = "false")})
-        // Page2data.map((val)=>{return })
-        // const fil = Page2data.filter((val, e) => { return (name.includes(val.fname))});
-        // fil[0].disable="true";
-        // console.log(fil, "filterrrr");
-        // setPage2data(fil);
-        // console.log(Page2data, "Page2 datataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        const {name, value} = e.target;
+        props.setAddPlayer([{...props.AddPlayer, [name]:value}]);
+        
+        setPage2data(dummydata);
+        console.log(props.AddPlayer);
     }
- 
-    console.log(props.Playerlist, "dataaaaaaaaa")
+
+
+    function Submit(e) {
+        e.preventDefault();
+        setErrors(ValidateInfo2(props));
+    }
+
     return (<>
+        <h3> Select Players for First Quarter:</h3>
         <div className="form fqform" style={{ width: "100%" }}>
-            <form >
+            <form onSubmit={Submit}>
                 <div>
-                    <select class="P2select" type="text" onChange={InputEvent} name="fname" placeholder="Select Player" required >
-                        <option selected disabled hidden>Select Player</option>
-                        {Page2data.map((val) => { return (<option  disabled = {val.disable}>{val.fname} {val.lname}</option>) })}
+                    <select
+                        className="p2select"
+                        onChange={(e) => InputEvent(e)}
+                        label="name"
+                        name="name1"
+                        placeholder="Select Player">
+                        <option disabled hidden selected>Select Player</option>
+                        {Page2data.map((val) => { return <option>{val.fname} {val.lname}</option> })}
                     </select>
-
-                    <select class="P2select P2selectposition" type="text" name="position" placeholder="Enter Position">
-                        <option selected disabled hidden>Select Position</option>
-                        {Page2data.map((val) => { return (<option>{val.position}</option>) })}
-                    </select>
-                </div>
-
-                <div>
-                    <select class="P2select" type="text" onChange={InputEvent} name="fname" placeholder="Select Player" required >
-                        <option selected disabled hidden>Select Player</option>
-                        {Page2data.map((val) => { return (<option>{val.fname} {val.lname}</option>) })}
-                    </select>
-
-                    <select class="P2select P2selectposition" type="text" onChange={InputEvent} name="position" placeholder="Enter Position">
-                        <option selected disabled hidden>Select Position</option>
-                    </select>
-                </div>
-                <div>
-                    <select class="P2select" type="text" onChange={InputEvent} name="fname" placeholder="Select Player" required >
-                        <option selected disabled hidden>Select Player</option>
-                        {Page2data.map((val) => { return (<option>{val.fname} {val.lname}</option>) })}
-                    </select>
-
-                    <select class="P2select P2selectposition" type="text" onChange={InputEvent} name="position" placeholder="Enter Position">
-                        <option selected disabled hidden>Select Position</option>
+                    <select
+                        className="p2select"
+                        onChange={(e) => InputEvent(e)}
+                        label="position"
+                        name="position1"
+                        placeholder="Select Position" >
+                        <option disabled hidden selected>Select Position</option>
+                        {/* {Page2data.map((val) => { return <option>{val.position}</option> })} */}
+                        {Page2data.map((val, id) => { return <option>{val.position}</option> })}
                     </select>
                 </div>
                 <div>
-                    <select class="P2select" type="text" onChange={InputEvent} name="fname" placeholder="Select Player" required >
-                        <option selected disabled hidden>Select Player</option>
-                        {Page2data.map((val) => { return (<option>{val.fname} {val.lname}</option>) })}
+                    <select
+                        className="p2select"
+                        onChange={(e) => InputEvent(e)}
+                        label="name"
+                        name="name2"
+                        placeholder="Select Player">
+                        <option disabled hidden selected>Select Player</option>
+                        {Page2data.map((val) => { return <option>{val.fname} {val.lname}</option> })}
                     </select>
-
-                    <select class="P2select P2selectposition" type="text" onChange={InputEvent} name="position" placeholder="Enter Position">
-                        <option selected disabled hidden>Select Position</option>
+                    <select
+                        className="p2select"
+                        onChange={(e) => InputEvent(e)}
+                        label="position"
+                        name="position2"
+                        placeholder="Select Position">
+                        <option disabled hidden selected>Select Position</option>
+                        {Page2data.map((val, id) => { return <option>{val.position}</option> })}
                     </select>
                 </div>
-
-                <button type="submit" className="savebtn">Save</button></form>
+                <div>
+                    <select
+                        className="p2select"
+                        onChange={(e) => InputEvent(e)}
+                        label="name3"
+                        name="name3"
+                        placeholder="Select Player">
+                        <option disabled hidden selected>Select Player</option>
+                        {Page2data.map((val) => { return <option>{val.fname} {val.lname}</option> })}
+                    </select>
+                    <select
+                        className="p2select"
+                        onChange={(e) => InputEvent(e)}
+                        label="position3"
+                        name="positon3"
+                        placeholder="Select Position">
+                        <option disabled hidden selected>Select Position</option>
+                        {Page2data.map((val, id) => { return <option>{val.position}</option> })}
+                    </select>
+                </div>
+                <div>
+                    <select
+                        className="p2select"
+                        onChange={(e) => InputEvent(e)}
+                        label="name4"
+                        name="name4"
+                        placeholder="Select Player">
+                        <option disabled hidden selected>Select Player</option>
+                        {Page2data.map((val) => { return <option>{val.fname} {val.lname}</option> })}
+                    </select>
+                    <select
+                        className="p2select"
+                        onChange={(e) => InputEvent(e)}
+                        label="position4"
+                        name="positon4"
+                        placeholder="Select Position" >
+                        <option disabled hidden selected>Select Position</option>
+                        {Page2data.map((val, id) => { return <option>{val.position}</option> })}
+                    </select>
+                </div>
+                <div>
+                    <select
+                        className="p2select"
+                        onChange={(e) => InputEvent(e)}
+                        label="name5"
+                        name="name5"
+                        placeholder="Select Player" >
+                        <option disabled hidden selected>Select Player</option>
+                        {Page2data.map((val) => { return <option>{val.fname} {val.lname}</option> })}
+                    </select>
+                    <select
+                        className="p2select"
+                        onChange={(e) => InputEvent(e)}
+                        label="position5"
+                        name="positon5"
+                        placeholder="Select Position">
+                        <option disabled hidden selected>Select Position</option>
+                        {Page2data.map((val, id) => { return <option>{val.position}</option> })}
+                    </select>
+                </div>
+                <button className="savebtn" type="submit" >Save</button>
+            </form>
         </div>
-    </>)
+    </>
+    )
 }
 export default FirstQuarter;

@@ -8,16 +8,30 @@
 .form input {
   border:none;
   outline:none;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   padding: 10px 5px;
   font-size: 18px;
-  border-bottom: 2px solid blue
+
+
 }
+.error{
+  color: red;
+
+}
+
 .form input::placeholder{
   font-size: 17px;
   color: grey;
 }
+.txtfields{
+  margin-top: 20px !important;
+  padding: 0px !important;
 
+}
+.p1select{
+  margin-top: 20px;
+  margin-bottom: 5px !important;
+}
 .form select{
   border:none;
   font-size: 18px;
@@ -66,4 +80,10 @@
 .P2select::placeholder{
   width: 300px;
   margin-left: 65px;
+}
+.p2select{
+  width: 40% ;
+  display: inline-block;
+  margin-right: 50px !important;
+  margin-bottom: 20px !important;
 }
