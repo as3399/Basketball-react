@@ -11,12 +11,9 @@
   margin-bottom: 5px;
   padding: 10px 5px;
   font-size: 18px;
-
-
 }
 .error{
   color: red;
-
 }
 
 .form input::placeholder{
@@ -32,11 +29,10 @@
   margin-top: 20px;
   margin-bottom: 5px !important;
 }
-.form select{
+.p1select{
   border:none;
   font-size: 18px;
   outline:none;
-  border-bottom: 2px solid blue;
   padding: 10px 5px;
   background-color: white;
   border:none;
@@ -44,8 +40,7 @@
   margin-bottom: 30px;
   padding: 10px 5px;
   font-size: 18px;
-  border-bottom: 2px solid blue
-
+  border-bottom: 2px solid blue;
 }
 
 #navbar {
@@ -60,6 +55,11 @@
   padding: 25px 10px;
   margin-left: 30px;
   color: white;
+}
+.submit{
+  color: rgb(9, 129, 9);
+  font: bolder;
+  font-size: larger;
 }
 .savebtn{
   position: relative;
@@ -85,5 +85,41 @@
   width: 40% ;
   display: inline-block;
   margin-right: 50px !important;
-  margin-bottom: 20px !important;
+  margin-top: 20px !important;
+  margin-bottom: 0px !important;
+  border:none;
+  font-size: 18px;
+  outline:none;
+  border-bottom: 2px solid blue;
+  padding: 10px 5px;
+  background-color: white;
+  border:none;
+  outline:none;
+  margin-bottom: 30px;
+  padding: 10px 5px;
+  font-size: 18px;
+  border-bottom: 2px solid blue
+}
+.p2select1{
+  width: 40% ;
+  display: inline-block;
+  margin-right: 50px !important;
+  margin-top: 20px !important;
+  margin-bottom: 0px !important;
+  border:none;
+  font-size: 18px;
+  outline:none;
+  padding: 10px 5px;
+  background-color: white;
+  border:none;
+  outline:none;
+  margin-bottom: 30px;
+  padding: 10px 5px;
+  font-size: 18px;
+  border-bottom: 2px solid red;
+  
+}
+.next{
+  width:70%;
+  margin-left: 40px;
 }
