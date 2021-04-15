@@ -12,7 +12,9 @@ const ComposeTeam = (props, callback) => {
 
     const InputEvent = (e) => {
         const { name, value } = e.target;
-        props.setdata({ ...props.data, [name]: value });
+        var letters = /^[A-Za-z]+$/;
+        if(value==="" || value.match(letters)){
+        props.setdata({ ...props.data, [name]: value });}
     }
 
     const InputEvent1 = (e) => {
@@ -23,12 +25,13 @@ const ComposeTeam = (props, callback) => {
     }
 
     const Submit = (e) => {
-        
         e.preventDefault();
         setErrors(ValidateInfo(props));
         props.setErrors1({});
         let arr = {fname:"", lname :"", height:"", position: "default"}
-            props.setdata(arr);
+    
+
+        props.setdata(arr);
 
         console.log(arr, "dataaaa");
         console.log(errors, "dataaaa");
@@ -40,6 +43,13 @@ const ComposeTeam = (props, callback) => {
             props.Playerlist.push(item);
         }
 
+    }
+    function handlechangeheight(e) {
+        var numbers = /^[-+]?[0-9]+$/;
+        const { name, value } = e.target;
+        if(value ==="" || value.match(numbers)){
+        props.setdata({ ...props.data, [name]: value });}
+        console.log(props.data, "dataaaaaa")
     }
 
 
@@ -73,9 +83,8 @@ const ComposeTeam = (props, callback) => {
                 {errors.lname && <p className="error">**{errors.lname}</p>}
                 <TextField
                     className="txtfields"
-                    type="number"
-                    onChange={InputEvent}
-                    value={props.data.height}
+                    onChange={handlechangeheight}
+                    
                     variant="outlined"
                     name="height"
                     value={props.data.height}

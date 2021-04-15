@@ -10,10 +10,14 @@ export default function ValidateInfo(props) {
     if (!props.data.height) {
         errors.height = "Enter Your Height"
     }
+    if (props.data.height<162 || props.data.height>304) {
+        errors.height = "Height Should be Between 162cms to 304cms"
+    }
     
     if (props.data.position == "default") {
         errors.position = "Enter Player Position"
     }
+    
     if(
         props.data.fname !=="" &&
         props.data.lname !=="" &&
