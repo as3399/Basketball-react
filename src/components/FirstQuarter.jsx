@@ -36,12 +36,14 @@ const FirstQuarter = (props) => {
 
     function InputEvent(e) {
         const { name, value, id } = e.target;
-       
+
         props.setAddPlayer({ ...props.AddPlayer, [name]: value });
-        const fil = Page2data.findIndex((val) => {return (value.includes(val.fname) && value.includes(val.lname) && value.includes(val.position) && value.includes(val.id) )})
+        const fil = Page2data.findIndex((val) => { return (value.includes(val.fname) && value.includes(val.lname) && value.includes(val.position) && value.includes(val.id)) })
         let arr = { ...props.AddPlayer }
         let arr1 = { ...match }
-
+        if (show1==true){
+            setShow1(false);
+        }
         if (name == "name1") {
             arr.name1 = value;
             arr1.name1 = value;
@@ -91,7 +93,10 @@ const FirstQuarter = (props) => {
         const { name, value } = e.target;
         props.setAddPlayer({ ...props.AddPlayer, [name]: value });
         let arr1 = { ...match }
-
+        
+        if (show1==true){
+            setShow1(false);
+        }
         if (name == "position1") {
             arr1.position1 = value;
             setMatch(arr1);
@@ -116,15 +121,35 @@ const FirstQuarter = (props) => {
         setPage2data(dummydata);
     }
     console.log("Addplayer", props.AddPlayer);
-    
 
+    let condition1 = (props.AddPlayer.name1 && props.AddPlayer.name2 && props.AddPlayer.name2 == props.AddPlayer.name1 ||
+        props.AddPlayer.name3 && props.AddPlayer.name1 && props.AddPlayer.name3 == props.AddPlayer.name1 ||
+        props.AddPlayer.name1 && props.AddPlayer.name4 && props.AddPlayer.name4 == props.AddPlayer.name1 ||
+        props.AddPlayer.name1 && props.AddPlayer.name5 && props.AddPlayer.name5 == props.AddPlayer.name1 ||
+        props.AddPlayer.name3 && props.AddPlayer.name2 && props.AddPlayer.name3 == props.AddPlayer.name2 ||
+        props.AddPlayer.name4 && props.AddPlayer.name2 && props.AddPlayer.name4 == props.AddPlayer.name2 ||
+        props.AddPlayer.name3 && props.AddPlayer.name4 && props.AddPlayer.name4 == props.AddPlayer.name3 ||
+        props.AddPlayer.name4 && props.AddPlayer.name5 && props.AddPlayer.name4 == props.AddPlayer.name5 ||
+        props.AddPlayer.name5 && props.AddPlayer.name2 && props.AddPlayer.name5 == props.AddPlayer.name2 ||
+        props.AddPlayer.name3 && props.AddPlayer.name5 && props.AddPlayer.name5 == props.AddPlayer.name3)
+
+    let condition2 = ((props.AddPlayer.position1 != "default" && props.AddPlayer.position2 != "default" && props.AddPlayer.position2 == props.AddPlayer.position1) ||
+        (props.AddPlayer.position3 != "default" && props.AddPlayer.position1 != "default" && props.AddPlayer.position3 == props.AddPlayer.position1) ||
+        (props.AddPlayer.position1 != "default" && props.AddPlayer.position4 != "default" && props.AddPlayer.position4 == props.AddPlayer.position1) ||
+        (props.AddPlayer.position1 != "default" && props.AddPlayer.position5 != "default" && props.AddPlayer.position5 == props.AddPlayer.position1) ||
+        (props.AddPlayer.position3 != "default" && props.AddPlayer.position2 != "default" && props.AddPlayer.position3 == props.AddPlayer.position2) ||
+        (props.AddPlayer.position4 != "default" && props.AddPlayer.position2 != "default" && props.AddPlayer.position4 == props.AddPlayer.position2) ||
+        (props.AddPlayer.position3 != "default" && props.AddPlayer.position4 != "default" && props.AddPlayer.position4 == props.AddPlayer.position3) ||
+        (props.AddPlayer.position4 != "default" && props.AddPlayer.position5 != "default" && props.AddPlayer.position4 == props.AddPlayer.position5) ||
+        (props.AddPlayer.position5 != "default" && props.AddPlayer.position2 != "default" && props.AddPlayer.position5 == props.AddPlayer.position2) ||
+        (props.AddPlayer.position3 != "default" && props.AddPlayer.position5 != "default" && props.AddPlayer.position5 == props.AddPlayer.position3))
     return (<>
         <h3> Select Players for First Quarter:</h3>
         <div className="form fqform" style={{ width: "100%" }}>
             <form>
                 <div>
-                    <select 
-                        className={(match.name1 && (match.name1 == match.name2 || match.name1 == match.name3 || match.name1 == match.name4 || match.name1 == match.name5)) ? "p2select1": "p2select"}
+                    <select
+                        className={(match.name1 && (match.name1 == match.name2 || match.name1 == match.name3 || match.name1 == match.name4 || match.name1 == match.name5)) ? "p2select1" : "p2select"}
                         onChange={InputEvent}
                         label="name"
                         name="name1"
@@ -132,8 +157,8 @@ const FirstQuarter = (props) => {
                         <option value="default" disabled hidden selected>Select Player</option>
                         {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
-                    <select 
-                        className={((match.position1) && (match.position1 == match.position2 || match.position1 == match.position3 || match.position1 == match.position4 || match.position1 == match.position5)) ? "p2select1": "p2select"}
+                    <select
+                        className={((match.position1) && (match.position1 == match.position2 || match.position1 == match.position3 || match.position1 == match.position4 || match.position1 == match.position5)) ? "p2select1" : "p2select"}
                         onChange={InputEvent1}
                         label="position"
                         name="position1"
@@ -153,7 +178,7 @@ const FirstQuarter = (props) => {
                 </div>
                 <div>
                     <select
-                       className={(match.name2 && (match.name2 == match.name1 || match.name2 == match.name3 || match.name2 == match.name4 || match.name2 == match.name5)) ? "p2select1": "p2select"}
+                        className={(match.name2 && (match.name2 == match.name1 || match.name2 == match.name3 || match.name2 == match.name4 || match.name2 == match.name5)) ? "p2select1" : "p2select"}
                         onChange={e => InputEvent(e)}
                         label="name"
                         name="name2"
@@ -162,7 +187,7 @@ const FirstQuarter = (props) => {
                         {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
-                          className={(match.position2 && (match.position2 == match.position1 || match.position2 == match.position3 || match.position2 == match.position4 || match.position2 == match.position5)) ? "p2select1": "p2select"}
+                        className={(match.position2 && (match.position2 == match.position1 || match.position2 == match.position3 || match.position2 == match.position4 || match.position2 == match.position5)) ? "p2select1" : "p2select"}
                         onChange={e => InputEvent1(e)}
                         label="position"
                         name="position2"
@@ -180,7 +205,7 @@ const FirstQuarter = (props) => {
                 </div>
                 <div>
                     <select
-                        className={(match.name3 && (match.name3 == match.name1 || match.name3 == match.name4 || match.name3 == match.name5 || match.name3 == match.name2)) ? "p2select1": "p2select"}
+                        className={(match.name3 && (match.name3 == match.name1 || match.name3 == match.name4 || match.name3 == match.name5 || match.name3 == match.name2)) ? "p2select1" : "p2select"}
                         onChange={e => InputEvent(e)}
                         label="name"
                         name="name3"
@@ -190,7 +215,7 @@ const FirstQuarter = (props) => {
                         {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
-                        className={(match.position3 && (match.position3 == match.position1 || match.position3 == match.position2 || match.position3 == match.position4 || match.position3 == match.position5)) ? "p2select1": "p2select"}
+                        className={(match.position3 && (match.position3 == match.position1 || match.position3 == match.position2 || match.position3 == match.position4 || match.position3 == match.position5)) ? "p2select1" : "p2select"}
                         onChange={e => InputEvent1(e)}
                         label="position"
                         name="position3"
@@ -208,7 +233,7 @@ const FirstQuarter = (props) => {
                 </div>
                 <div>
                     <select
-                        className={((match.name4 && (match.name4 == match.name1 || match.name4 == match.name2 || match.name4 == match.name3 || match.name4 == match.name5))) ? "p2select1": "p2select"}
+                        className={((match.name4 && (match.name4 == match.name1 || match.name4 == match.name2 || match.name4 == match.name3 || match.name4 == match.name5))) ? "p2select1" : "p2select"}
                         onChange={e => InputEvent(e)}
                         label="name"
                         name="name4"
@@ -218,7 +243,7 @@ const FirstQuarter = (props) => {
                         {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
-                        className= {(match.position4 && (match.position4 == match.position1 || match.position4 == match.position2 || match.position4 == match.position3 || match.position4 == match.position5)) ? "p2select1": "p2select"}
+                        className={(match.position4 && (match.position4 == match.position1 || match.position4 == match.position2 || match.position4 == match.position3 || match.position4 == match.position5)) ? "p2select1" : "p2select"}
                         onChange={e => InputEvent1(e)}
                         label="position4"
                         name="position4"
@@ -236,7 +261,7 @@ const FirstQuarter = (props) => {
                 </div>
                 <div>
                     <select
-                        className={((match.name5 && (match.name5 == match.name1 || match.name5 == match.name2 || match.name5 == match.name3 || match.name5 == match.name4))) ? "p2select1": "p2select"}
+                        className={((match.name5 && (match.name5 == match.name1 || match.name5 == match.name2 || match.name5 == match.name3 || match.name5 == match.name4))) ? "p2select1" : "p2select"}
                         onChange={e => InputEvent(e)}
                         label="name"
                         name="name5"
@@ -245,7 +270,7 @@ const FirstQuarter = (props) => {
                         {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
-                        className={(match.position5 && (match.position5 == match.position1 || match.position5 == match.position2 || match.position5 == match.position3 || match.position5 == match.position4)) ? "p2select1": "p2select"}
+                        className={(match.position5 && (match.position5 == match.position1 || match.position5 == match.position2 || match.position5 == match.position3 || match.position5 == match.position4)) ? "p2select1" : "p2select"}
                         onChange={e => InputEvent1(e)}
                         label="position5"
                         name="position5"
@@ -262,35 +287,15 @@ const FirstQuarter = (props) => {
 
                 </div>
 
-     <div className="p2error"> <div className="div1"> { (props.AddPlayer.name1 && props.AddPlayer.name2 && props.AddPlayer.name2 == props.AddPlayer.name1 ||
-                    props.AddPlayer.name3 && props.AddPlayer.name1 && props.AddPlayer.name3 == props.AddPlayer.name1 ||
-                    props.AddPlayer.name1 && props.AddPlayer.name4 && props.AddPlayer.name4 == props.AddPlayer.name1 ||
-                    props.AddPlayer.name1 && props.AddPlayer.name5 && props.AddPlayer.name5 == props.AddPlayer.name1 ||
-                    props.AddPlayer.name3 && props.AddPlayer.name2 && props.AddPlayer.name3 == props.AddPlayer.name2 ||
-                    props.AddPlayer.name4 && props.AddPlayer.name2 && props.AddPlayer.name4 == props.AddPlayer.name2 ||
-                    props.AddPlayer.name3 && props.AddPlayer.name4 && props.AddPlayer.name4 == props.AddPlayer.name3 ||
-                    props.AddPlayer.name4 && props.AddPlayer.name5 && props.AddPlayer.name4 == props.AddPlayer.name5 ||
-                    props.AddPlayer.name5 && props.AddPlayer.name2 && props.AddPlayer.name5 == props.AddPlayer.name2 ||
-                    props.AddPlayer.name3 && props.AddPlayer.name5 && props.AddPlayer.name5 == props.AddPlayer.name3) && <p className="error">**Input feilds are same</p>}
-                        </div>
-                        <div className="div2"> {((props.AddPlayer.position1!="default" && props.AddPlayer.position2!="default" && props.AddPlayer.position2 == props.AddPlayer.position1) ||
-                    (props.AddPlayer.position3!="default" && props.AddPlayer.position1!="default" && props.AddPlayer.position3 == props.AddPlayer.position1) ||
-                    (props.AddPlayer.position1!="default" && props.AddPlayer.position4!="default" && props.AddPlayer.position4 == props.AddPlayer.position1) ||
-                    (props.AddPlayer.position1!="default" && props.AddPlayer.position5!="default" && props.AddPlayer.position5 == props.AddPlayer.position1) ||
-                    (props.AddPlayer.position3!="default" && props.AddPlayer.position2!="default" && props.AddPlayer.position3 == props.AddPlayer.position2) ||
-                    (props.AddPlayer.position4!="default" && props.AddPlayer.position2!="default" && props.AddPlayer.position4 == props.AddPlayer.position2) ||
-                    (props.AddPlayer.position3!="default" && props.AddPlayer.position4!="default" && props.AddPlayer.position4 == props.AddPlayer.position3) ||
-                    (props.AddPlayer.position4!="default" && props.AddPlayer.position5!="default" && props.AddPlayer.position4 == props.AddPlayer.position5) ||
-                    (props.AddPlayer.position5!="default" && props.AddPlayer.position2!="default" && props.AddPlayer.position5 == props.AddPlayer.position2) ||
-                    (props.AddPlayer.position3!="default" && props.AddPlayer.position5!="default" && props.AddPlayer.position5 == props.AddPlayer.position3))
+                <div className="p2error"> <div className="div1"> {condition1 && <p className="error">**Input feilds are same</p>}
+                </div>
+                    <div className="div2"> {
+                        condition2 && <p className="error">**Cannot Add Same Player for Multiple Position</p>} </div></div>
 
-
-                    && <p className="error">**Cannot Add Same Player for Multiple Position</p>} </div></div>
-                    
                 {error.name && <p className="error">{error.name}</p>}
-                {error.name1 == "" && <p className="submit ">Players has been selected for First Quarter</p>}
+                {(show1 && !condition1 && !condition2) && <p className="submit ">Players has been selected for First Quarter</p>}
 
-                <button className="savebtn" onClick={(e) => { e.preventDefault(); setError(ValidateInfo2(props)) }}>Save</button>
+                <button className="savebtn" onClick={(e) => { e.preventDefault(); setError(ValidateInfo2(props)); setShow1(true) }}>Save</button>
             </form>
 
         </div>
