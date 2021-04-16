@@ -4,10 +4,11 @@ import { ValidateInfo2 } from "./ValidateForm";
 import SelectBox from "./Selectbox"
 
 
+
 const FirstQuarter = (props) => {
     const [Page2data, setPage2data] = useState([]);
     const [error, setError] = useState({});
-    const [ip1, setIp1] = useState();
+    const [ip1, setIp1] = useState(0);
     const [ip2, setIp2] = useState();
     const [ip3, setIp3] = useState();
     const [ip4, setIp4] = useState();
@@ -35,10 +36,9 @@ const FirstQuarter = (props) => {
     const dummydata = Page2data;
 
     function InputEvent(e) {
-        const { name, value, id } = e.target;
-
+        const { name, value } = e.target;
         props.setAddPlayer({ ...props.AddPlayer, [name]: value });
-        const fil = Page2data.findIndex((val) => { return (value.includes(val.fname) && value.includes(val.lname) && value.includes(val.position) && value.includes(val.id)) })
+        const fil = Page2data.findIndex((val) => { return (value.includes(val.fname) && value.includes(val.lname)  && value.includes(val.id)) })
         let arr = { ...props.AddPlayer }
         let arr1 = { ...match }
         if (show1 == true) {
@@ -48,7 +48,6 @@ const FirstQuarter = (props) => {
             arr.name1 = value;
             arr1.name1 = value;
             setMatch(arr1);
-            arr.position1 = "default"
             props.setAddPlayer(arr)
             setIp1(fil)
         };
@@ -56,7 +55,7 @@ const FirstQuarter = (props) => {
             arr.name2 = value;
             arr1.name2 = value;
             setMatch(arr1);
-            arr.position2 = "default"
+           
             props.setAddPlayer(arr)
             setIp2(fil)
         };
@@ -64,7 +63,7 @@ const FirstQuarter = (props) => {
             arr.name3 = value;
             arr1.name3 = value;
             setMatch(arr1);
-            arr.position3 = "default"
+         
             props.setAddPlayer(arr)
             setIp3(fil)
         };
@@ -72,7 +71,7 @@ const FirstQuarter = (props) => {
             arr.name4 = value;
             arr1.name4 = value;
             setMatch(arr1);
-            arr.position4 = "default"
+        
             props.setAddPlayer(arr)
             setIp4(fil)
         };
@@ -80,7 +79,7 @@ const FirstQuarter = (props) => {
             arr.name5 = value;
             arr1.name5 = value;
             setMatch(arr1);
-            arr.position5 = "default"
+         
             props.setAddPlayer(arr)
             setIp5(fil)
         };
@@ -121,6 +120,12 @@ const FirstQuarter = (props) => {
         setPage2data(dummydata);
     }
     console.log("Addplayer", props.AddPlayer);
+    let Sel1 = Page2data.map((val) => {
+        {return val.position }})
+
+
+
+
 
     let condition1 = (props.AddPlayer.name1 && props.AddPlayer.name2 && props.AddPlayer.name2 == props.AddPlayer.name1 ||
         props.AddPlayer.name3 && props.AddPlayer.name1 && props.AddPlayer.name3 == props.AddPlayer.name1 ||
@@ -165,7 +170,7 @@ const FirstQuarter = (props) => {
                         name="name1"
                         placeholder="Select Player">
                         <option value="default" disabled hidden selected>Select Player</option>
-                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
+                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
                         className={((match.position1) && (match.position1 == match.position2 || match.position1 == match.position3 || match.position1 == match.position4 || match.position1 == match.position5)) ? "p2select1" : "p2select"}
@@ -176,9 +181,12 @@ const FirstQuarter = (props) => {
                         placeholder="Select Position" >
                         <option value="default" disabled hidden selected>Select Position</option>
                         {/* {Page2data.map((val, id) => { console.log(props.AddPlayer);{return <option>{val.includes(com)}</option>} })} */}
-                        {Page2data.map((val, index) => {
-                            if (index == ip1) { return <option>{val.position}</option> }
-                        })}
+                        { console.log(Sel1, "sel1")
+                        //   Sel1.map((val)=>{ console.log(val)
+                        }
+                            
+                            
+            
                     </select>
                     {/* {(match.name1 && (match.name1 == match.name2 || match.name1 == match.name3 || match.name1 == match.name4 || match.name1 == match.name5)) && <p className="error">**Input feilds are same</p>}
                     
@@ -194,7 +202,7 @@ const FirstQuarter = (props) => {
                         name="name2"
                         placeholder="Select Player">
                         <option value="default" disabled hidden selected>Select Player</option>
-                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
+                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
                         className={(match.position2 && (match.position2 == match.position1 || match.position2 == match.position3 || match.position2 == match.position4 || match.position2 == match.position5)) ? "p2select1" : "p2select"}
@@ -222,7 +230,7 @@ const FirstQuarter = (props) => {
                         placeholder="Select Player"
                     >
                         <option value="default" disabled hidden selected>Select Player</option>
-                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
+                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
                         className={(match.position3 && (match.position3 == match.position1 || match.position3 == match.position2 || match.position3 == match.position4 || match.position3 == match.position5)) ? "p2select1" : "p2select"}
@@ -235,8 +243,7 @@ const FirstQuarter = (props) => {
                         {/* {Page2data.map((val, id) => { console.log(props.AddPlayer);{return <option>{val.includes(com)}</option>} })} */}
                         {Page2data.map((val, index) => {
 
-                            if (index == ip3) { return <option>{val.position}</option> }
-                        })}
+                            if (index == ip3) { return <option>{val.position}</option> }})}
                     </select>
                     {/* {(match.name3 && (match.name3 == match.name1 || match.name3 == match.name4 || match.name3 == match.name5 || match.name3 == match.name2)) && <p className="error">**Input feilds are same</p>}
                     {(match.position3 && (match.position3 == match.position1 || match.position3 == match.position2 || match.position3 == match.position4 || match.position1 == match.position5)) && <p className="error">**Input feilds are same</p>} */}
@@ -250,7 +257,7 @@ const FirstQuarter = (props) => {
                         placeholder="Select Player"
                     >
                         <option value="default" disabled hidden selected>Select Player</option>
-                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
+                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
                         className={(match.position4 && (match.position4 == match.position1 || match.position4 == match.position2 || match.position4 == match.position3 || match.position4 == match.position5)) ? "p2select1" : "p2select"}
@@ -277,7 +284,7 @@ const FirstQuarter = (props) => {
                         name="name5"
                         placeholder="Select Player">
                         <option value="default" disabled hidden selected>Select Player</option>
-                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
+                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
                         className={(match.position5 && (match.position5 == match.position1 || match.position5 == match.position2 || match.position5 == match.position3 || match.position5 == match.position4)) ? "p2select1" : "p2select"}

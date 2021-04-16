@@ -17,15 +17,12 @@ export default function ValidateInfo(props) {
     if (props.data.position == "default") {
         errors.position = "Enter Player Position"
     }
-    if (props.Playerlist.length>0 &&
+    if (props.Playerlist.length>=0 &&
         props.data.fname !== "" &&
         props.data.lname !== "" &&
         props.data.height !== "" &&
         props.data.position !== "default"
-    ) { errors.submit = `Congrats! Player${props.Playerlist.length} has been Added` }
-
-    if (props.Playerlist.length==0) { errors.submit = "No player has been added" }
-
+    ) { errors.submit = `Congrats! Player${props.Playerlist.length+1} has been Added` }
     return errors;
 }
 
