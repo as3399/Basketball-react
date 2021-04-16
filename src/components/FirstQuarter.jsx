@@ -41,7 +41,7 @@ const FirstQuarter = (props) => {
         const fil = Page2data.findIndex((val) => { return (value.includes(val.fname) && value.includes(val.lname) && value.includes(val.position) && value.includes(val.id)) })
         let arr = { ...props.AddPlayer }
         let arr1 = { ...match }
-        if (show1==true){
+        if (show1 == true) {
             setShow1(false);
         }
         if (name == "name1") {
@@ -93,8 +93,8 @@ const FirstQuarter = (props) => {
         const { name, value } = e.target;
         props.setAddPlayer({ ...props.AddPlayer, [name]: value });
         let arr1 = { ...match }
-        
-        if (show1==true){
+
+        if (show1 == true) {
             setShow1(false);
         }
         if (name == "position1") {
@@ -143,6 +143,16 @@ const FirstQuarter = (props) => {
         (props.AddPlayer.position4 != "default" && props.AddPlayer.position5 != "default" && props.AddPlayer.position4 == props.AddPlayer.position5) ||
         (props.AddPlayer.position5 != "default" && props.AddPlayer.position2 != "default" && props.AddPlayer.position5 == props.AddPlayer.position2) ||
         (props.AddPlayer.position3 != "default" && props.AddPlayer.position5 != "default" && props.AddPlayer.position5 == props.AddPlayer.position3))
+    let condition3 = ((props.AddPlayer.name1 == "") ||
+        (props.AddPlayer.name2 == "") ||
+        (props.AddPlayer.name3 == "") ||
+        (props.AddPlayer.name4 == "") ||
+        (props.AddPlayer.name5 == "") ||
+        (props.AddPlayer.position1 == "default") ||
+        (props.AddPlayer.position2 == "default") ||
+        (props.AddPlayer.position3 == "default") ||
+        (props.AddPlayer.position4 == "default") ||
+        (props.AddPlayer.position5 == "default"))
     return (<>
         <h3> Select Players for First Quarter:</h3>
         <div className="form fqform" style={{ width: "100%" }}>
@@ -293,7 +303,8 @@ const FirstQuarter = (props) => {
                         condition2 && <p className="error">**Cannot Add Same Player for Multiple Position</p>} </div></div>
 
                 {error.name && <p className="error">{error.name}</p>}
-                {(show1 && !condition1 && !condition2) && <p className="submit ">Players has been selected for First Quarter</p>}
+                {(show1 && !condition3 && !condition1 && !condition2) && <p className="submit ">Players has been selected for First Quarter</p>}
+                {(show1 && condition3) && <p className="error ">**Must have to select 5 player for the First Quarter</p>}
 
                 <button className="savebtn" onClick={(e) => { e.preventDefault(); setError(ValidateInfo2(props)); setShow1(true) }}>Save</button>
             </form>
