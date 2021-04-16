@@ -14,7 +14,7 @@ const ComposeTeam = (props, callback) => {
         const { name, value } = e.target;
         var letters = /^[A-Za-z]+$/;
         if(value==="" || value.match(letters)){
-        props.setdata({ ...props.data, [name]: value });}
+        props.setdata({ ...props.data, [name]: value});}
     }
 
     const InputEvent1 = (e) => {
@@ -29,8 +29,6 @@ const ComposeTeam = (props, callback) => {
         setErrors(ValidateInfo(props));
         props.setErrors1({});
         let arr = {fname:"", lname :"", height:"", position: "default"}
-    
-
         props.setdata(arr);
 
         console.log(arr, "dataaaa");
@@ -38,8 +36,9 @@ const ComposeTeam = (props, callback) => {
     }
 
     function Click() {
-        const item = props.data;
-        if (props.data.fname !== "" && props.data.lname !== "" && props.data.height !== "" && props.data.position !== "default") {
+        if (props.data.fname !== "" && props.data.lname !== "" && props.data.height !== "" && props.data.height<320 && props.data.height>162 && props.data.position !== "default") {
+            var item = props.data;
+            item.id = props.Playerlist.length;
             props.Playerlist.push(item);
         }
 
@@ -61,11 +60,13 @@ const ComposeTeam = (props, callback) => {
             <form onSubmit={Submit}>
                 <TextField
                     className="txtfields"
+                    
                     type="text"
                     onChange={InputEvent}
                     value={props.data.fname}
                     variant="outlined"
                     name="fname"
+                   
                     label="First Name"
                     value={props.data.fname}
                 />
@@ -76,6 +77,7 @@ const ComposeTeam = (props, callback) => {
                     onChange={InputEvent}
                     value={props.data.lname}
                     variant="outlined"
+                    
                     name="lname"
                     value={props.data.lname}
                     label="Last Name"
@@ -84,7 +86,7 @@ const ComposeTeam = (props, callback) => {
                 <TextField
                     className="txtfields"
                     onChange={handlechangeheight}
-                    
+                   
                     variant="outlined"
                     name="height"
                     value={props.data.height}

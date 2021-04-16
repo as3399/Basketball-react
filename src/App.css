@@ -42,6 +42,10 @@
   font-size: 18px;
   border-bottom: 2px solid blue;
 }
+.p2error{
+  display: flex;
+
+}
 
 #navbar {
     display: flex;
@@ -125,4 +129,16 @@
 }
 .option{
   display: none;
+}
+.div1{
+  display: inline;
+  width: 300px;
+  margin-right: 63px;
+
+ 
+}
+.div2{
+  display: inline;
+  width: 350px;
+  
 }

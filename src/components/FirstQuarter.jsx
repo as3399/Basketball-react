@@ -38,7 +38,7 @@ const FirstQuarter = (props) => {
         const { name, value, id } = e.target;
        
         props.setAddPlayer({ ...props.AddPlayer, [name]: value });
-        const fil = Page2data.findIndex((val) => {return (value.includes(val.fname) && value.includes(val.lname) && value.includes(val.position) )})
+        const fil = Page2data.findIndex((val) => {return (value.includes(val.fname) && value.includes(val.lname) && value.includes(val.position) && value.includes(val.id) )})
         let arr = { ...props.AddPlayer }
         let arr1 = { ...match }
 
@@ -82,6 +82,7 @@ const FirstQuarter = (props) => {
             props.setAddPlayer(arr)
             setIp5(fil)
         };
+        setError(ValidateInfo2(props))
         setPage2data(dummydata);
         console.log("inp player ", e.target.value);
     }
@@ -111,6 +112,7 @@ const FirstQuarter = (props) => {
             arr1.position5 = value;
             setMatch(arr1);
         };
+        setError(ValidateInfo2(props))
         setPage2data(dummydata);
     }
     console.log("Addplayer", props.AddPlayer);
@@ -128,7 +130,7 @@ const FirstQuarter = (props) => {
                         name="name1"
                         placeholder="Select Player">
                         <option value="default" disabled hidden selected>Select Player</option>
-                        {Page2data.map((val, id) => { { return (<option value={`${val.fname}${val.lname}${val.position}`} > {val.fname} {val.lname}</option>) } })}
+                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select 
                         className={((match.position1) && (match.position1 == match.position2 || match.position1 == match.position3 || match.position1 == match.position4 || match.position1 == match.position5)) ? "p2select1": "p2select"}
@@ -157,7 +159,7 @@ const FirstQuarter = (props) => {
                         name="name2"
                         placeholder="Select Player">
                         <option value="default" disabled hidden selected>Select Player</option>
-                        {Page2data.map((val, id) => { { return (<option value={`${val.fname}${val.lname}${val.position}`} > {val.fname} {val.lname}</option>) } })}
+                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
                           className={(match.position2 && (match.position2 == match.position1 || match.position2 == match.position3 || match.position2 == match.position4 || match.position2 == match.position5)) ? "p2select1": "p2select"}
@@ -185,7 +187,7 @@ const FirstQuarter = (props) => {
                         placeholder="Select Player"
                     >
                         <option value="default" disabled hidden selected>Select Player</option>
-                        {Page2data.map((val, id) => { { return (<option value={`${val.fname}${val.lname}${val.position}`} > {val.fname} {val.lname}</option>) } })}
+                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
                         className={(match.position3 && (match.position3 == match.position1 || match.position3 == match.position2 || match.position3 == match.position4 || match.position3 == match.position5)) ? "p2select1": "p2select"}
@@ -213,7 +215,7 @@ const FirstQuarter = (props) => {
                         placeholder="Select Player"
                     >
                         <option value="default" disabled hidden selected>Select Player</option>
-                        {Page2data.map((val, id) => { { return (<option value={`${val.fname}${val.lname}${val.position}`} > {val.fname} {val.lname}</option>) } })}
+                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
                         className= {(match.position4 && (match.position4 == match.position1 || match.position4 == match.position2 || match.position4 == match.position3 || match.position4 == match.position5)) ? "p2select1": "p2select"}
@@ -240,7 +242,7 @@ const FirstQuarter = (props) => {
                         name="name5"
                         placeholder="Select Player">
                         <option value="default" disabled hidden selected>Select Player</option>
-                        {Page2data.map((val, id) => { { return (<option value={`${val.fname}${val.lname}${val.position}`} > {val.fname} {val.lname}</option>) } })}
+                        {Page2data.map((val) => { { return (<option value={`${val.fname}${val.lname}${val.position}${val.id}`} > {val.fname} {val.lname}</option>) } })}
                     </select>
                     <select
                         className={(match.position5 && (match.position5 == match.position1 || match.position5 == match.position2 || match.position5 == match.position3 || match.position5 == match.position4)) ? "p2select1": "p2select"}
@@ -259,6 +261,32 @@ const FirstQuarter = (props) => {
                     </select>
 
                 </div>
+
+     <div className="p2error"> <div className="div1"> { (props.AddPlayer.name1 && props.AddPlayer.name2 && props.AddPlayer.name2 == props.AddPlayer.name1 ||
+                    props.AddPlayer.name3 && props.AddPlayer.name1 && props.AddPlayer.name3 == props.AddPlayer.name1 ||
+                    props.AddPlayer.name1 && props.AddPlayer.name4 && props.AddPlayer.name4 == props.AddPlayer.name1 ||
+                    props.AddPlayer.name1 && props.AddPlayer.name5 && props.AddPlayer.name5 == props.AddPlayer.name1 ||
+                    props.AddPlayer.name3 && props.AddPlayer.name2 && props.AddPlayer.name3 == props.AddPlayer.name2 ||
+                    props.AddPlayer.name4 && props.AddPlayer.name2 && props.AddPlayer.name4 == props.AddPlayer.name2 ||
+                    props.AddPlayer.name3 && props.AddPlayer.name4 && props.AddPlayer.name4 == props.AddPlayer.name3 ||
+                    props.AddPlayer.name4 && props.AddPlayer.name5 && props.AddPlayer.name4 == props.AddPlayer.name5 ||
+                    props.AddPlayer.name5 && props.AddPlayer.name2 && props.AddPlayer.name5 == props.AddPlayer.name2 ||
+                    props.AddPlayer.name3 && props.AddPlayer.name5 && props.AddPlayer.name5 == props.AddPlayer.name3) && <p className="error">**Input feilds are same</p>}
+                        </div>
+                        <div className="div2"> {((props.AddPlayer.position1!="default" && props.AddPlayer.position2!="default" && props.AddPlayer.position2 == props.AddPlayer.position1) ||
+                    (props.AddPlayer.position3!="default" && props.AddPlayer.position1!="default" && props.AddPlayer.position3 == props.AddPlayer.position1) ||
+                    (props.AddPlayer.position1!="default" && props.AddPlayer.position4!="default" && props.AddPlayer.position4 == props.AddPlayer.position1) ||
+                    (props.AddPlayer.position1!="default" && props.AddPlayer.position5!="default" && props.AddPlayer.position5 == props.AddPlayer.position1) ||
+                    (props.AddPlayer.position3!="default" && props.AddPlayer.position2!="default" && props.AddPlayer.position3 == props.AddPlayer.position2) ||
+                    (props.AddPlayer.position4!="default" && props.AddPlayer.position2!="default" && props.AddPlayer.position4 == props.AddPlayer.position2) ||
+                    (props.AddPlayer.position3!="default" && props.AddPlayer.position4!="default" && props.AddPlayer.position4 == props.AddPlayer.position3) ||
+                    (props.AddPlayer.position4!="default" && props.AddPlayer.position5!="default" && props.AddPlayer.position4 == props.AddPlayer.position5) ||
+                    (props.AddPlayer.position5!="default" && props.AddPlayer.position2!="default" && props.AddPlayer.position5 == props.AddPlayer.position2) ||
+                    (props.AddPlayer.position3!="default" && props.AddPlayer.position5!="default" && props.AddPlayer.position5 == props.AddPlayer.position3))
+
+
+                    && <p className="error">**Cannot Add Same Player for Multiple Position</p>} </div></div>
+                    
                 {error.name && <p className="error">{error.name}</p>}
                 {error.name1 == "" && <p className="submit ">Players has been selected for First Quarter</p>}
 
