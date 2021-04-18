@@ -7,10 +7,10 @@ export default function ValidateInfo(props) {
     if (!props.data.lname) {
         errors.lname = "Enter Last Name"
     }
-    if (!props.data.height) {
+    if (props.data.height === "") {
         errors.height = "Enter Your Height"
     }
-    if (props.data.height < 162 || props.data.height > 304) {
+    if (props.data.height != "" && (props.data.height < 162 || props.data.height > 304)) {
         errors.height = "Height Should be Between 162cms to 304cms"
     }
 
