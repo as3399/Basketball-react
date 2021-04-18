@@ -14,6 +14,8 @@
 }
 .error{
   color: red;
+  font-size: 14px;
+  font-weight: 600 ;
 }
 
 .form input::placeholder{
@@ -54,11 +56,19 @@
     font-size: larger;
 }
 .team{
-  width: 130px;
+  width: 170px;
   text-align: center;
   padding: 25px 10px;
   margin-left: 30px;
   color: white;
+}
+.team1{
+  width: 170px;
+  text-align: center;
+  padding: 25px 10px;
+  margin-left: 30px;
+  color: white;
+  border-bottom: 4px solid rgb(69, 69, 226);
 }
 .submit{
   color: rgb(9, 129, 9);
@@ -141,4 +151,10 @@
   display: inline;
   width: 350px;
   
+}
+.css-g1d714-ValueContainer{
+  min-height: 48px !important;
+}
+.react_select{
+  margin-top: 20px;
 }

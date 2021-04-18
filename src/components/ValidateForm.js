@@ -14,14 +14,14 @@ export default function ValidateInfo(props) {
         errors.height = "Height Should be Between 162cms to 304cms"
     }
 
-    if (props.data.position == "default") {
+    if (props.data.position === "") {
         errors.position = "Enter Player Position"
     }
     if (props.Playerlist.length>=0 &&
         props.data.fname !== "" &&
         props.data.lname !== "" &&
         props.data.height !== "" &&
-        props.data.position !== "default"
+        props.data.position !== ""
     ) { errors.submit = `Congrats! Player${props.Playerlist.length+1} has been Added` }
     return errors;
 }
@@ -34,37 +34,8 @@ function ValidateInfo1(props) {
     return errors1;
 }
 
-
-
 function ValidateInfo2(props) {
     let errors = {};
-    // if (props.AddPlayer.name2 == props.AddPlayer.name1 ||
-    //     props.AddPlayer.name3 == props.AddPlayer.name1 ||
-    //     props.AddPlayer.name4 == props.AddPlayer.name1 ||
-    //     props.AddPlayer.name5 == props.AddPlayer.name1 ||
-    //     props.AddPlayer.name3 == props.AddPlayer.name2 ||
-    //     props.AddPlayer.name4 == props.AddPlayer.name2 ||
-    //     props.AddPlayer.name4 == props.AddPlayer.name3 ||
-    //     props.AddPlayer.name4 == props.AddPlayer.name5 ||
-    //     props.AddPlayer.name5 == props.AddPlayer.name2 ||
-    //     props.AddPlayer.name5 == props.AddPlayer.name3
-    // ) {
-    //      errors.name = "**Cannot Add Single Player Multiple Times"
-    // }
-    //  if(props.AddPlayer.position2 == props.AddPlayer.position1 ||
-    //     props.AddPlayer.position3 == props.AddPlayer.position1 ||
-    //     props.AddPlayer.position4 == props.AddPlayer.position1 ||
-    //     props.AddPlayer.position5 == props.AddPlayer.position1 ||
-    //     props.AddPlayer.position3 == props.AddPlayer.position2 ||
-    //     props.AddPlayer.position4 == props.AddPlayer.position2 ||
-    //     props.AddPlayer.position4 == props.AddPlayer.position3 ||
-    //     props.AddPlayer.position4 == props.AddPlayer.position5 ||
-    //     props.AddPlayer.position5 == props.AddPlayer.position2 ||
-    //     props.AddPlayer.position5 == props.AddPlayer.position3
-    // ) {
-    //      errors.name = "**Cannot Add Same Player for Multiple Position"
-    // }
-    // else {errors.name1 = "";}
     return errors;
 
 }

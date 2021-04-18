@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react"
+import React, {  useRef, useState } from "react"
 import Select from 'react-select';
 import TextField from "@material-ui/core/TextField";
 import ValidateInfo from "./ValidateForm"
-import {ValidateInfo1} from "./ValidateForm"
 import makeAnimated from 'react-select/animated';
 
 const ComposeTeam = (props) => {
@@ -14,6 +13,7 @@ let options=[
                     {value:"Power Forward",label :"Power Forward"},
                     {value:"The Center", label:"The Center"}
 ]
+const selectInputRef = useRef();
     const [Values, setValues] = useState("");
     const [Playerdata, setPlayerdata] = useState([]);
     const animatedComponents = makeAnimated();
@@ -39,11 +39,12 @@ let options=[
     function Click() {
         setErrors(ValidateInfo(props));
         props.setErrors1({});
-        if (props.data.fname !== "" && props.data.lname !== "" && props.data.height !== "" && props.data.height<320 && props.data.height>162 && props.data.position !== "default") {
-            let arr = {fname:"", lname :"", height:"", position: "default"}
+        if (props.data.fname !== "" && props.data.lname !== "" && props.data.height !== "" && props.data.position !== "" && props.data.height<320 && props.data.height>162) {
+            let arr = {fname:"", lname :"", height:"", position: "" }
             var item = props.data;
             item.id = props.Playerlist.length;
             props.Playerlist.push(item);
+            selectInputRef.current.select.clearValue();
             props.setdata(arr);
         }
     }
@@ -63,24 +64,19 @@ let options=[
             <form onSubmit={Submit}>
                 <TextField
                     className="txtfields"
-                    
-                    type="text"
                     onChange={InputEvent}
                     value={props.data.fname}
                     variant="outlined"
                     name="fname"
-                   
                     label="First Name"
                     value={props.data.fname}
                 />
                 {errors.fname && <p className="error">**{errors.fname}</p>}
                 <TextField
                     className="txtfields"
-                    type="text"
                     onChange={InputEvent}
                     value={props.data.lname}
                     variant="outlined"
-                    
                     name="lname"
                     value={props.data.lname}
                     label="Last Name"
@@ -89,7 +85,6 @@ let options=[
                 <TextField
                     className="txtfields"
                     onChange={handlechangeheight}
-                   
                     variant="outlined"
                     name="height"
                     value={props.data.height}
@@ -99,26 +94,19 @@ let options=[
                 />
                 {errors.height && <p className="error">**{errors.height}</p>}
                 <Select
-                    
+                    ref={selectInputRef}
+                    className="react_select"
                     onChange={(e) =>InputEvent1(e)}
-                
+                    value={props.data.position}
                     name="position"
                     components={animatedComponents}
                     options={options}
                     placeholder="Select Position"
                     isMulti
-                  
                 />
-                    {/* <option value="default" disabled selected hidden>Select..</option>
-                    <option value="Point Guard">Point Guard</option>
-                    <option value="Shooting Guard">Shooting Guard</option>
-                    <option value="Small Forward">Small Forward</option>
-                    <option value="Power Forward">Power Forward</option>
-                    <option value="The Center">The Center</option> */}
-              
-                {errors.position && <p className="error">**{errors.position}</p>}
-                {errors.submit && <p className="submit">{errors.submit}</p>}
-                {props.errors1.adderror!="" && <p className="error">{props.errors1.adderror}</p>}
+                {errors.position && <small className="error">**{errors.position}</small>}
+                {errors.submit && <small className="submit">{errors.submit}</small>}
+                {props.errors1.adderror!="" && <small className="error">{props.errors1.adderror}</small>}
 
                 <button type="submit" onClick={(e) => Click(e)} className="savebtn">Save</button>
             </form>
