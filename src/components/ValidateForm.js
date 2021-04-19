@@ -20,6 +20,8 @@ export default function ValidateInfo(props) {
     if (props.Playerlist.length>=0 &&
         props.data.fname !== "" &&
         props.data.lname !== "" &&
+        props.data.height > 162 &&
+        props.data.height < 304 &&
         props.data.height !== "" &&
         props.data.position !== ""
     ) { errors.submit = `Congrats! Player${props.Playerlist.length+1} has been Added` }

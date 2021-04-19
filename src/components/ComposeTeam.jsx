@@ -39,15 +39,15 @@ const selectInputRef = useRef();
     function Click() {
         setErrors(ValidateInfo(props));
         props.setErrors1({});
-        if (props.data.fname !== "" && props.data.lname !== "" && props.data.height !== "" && props.data.position !== "" && (props.data.height<304 && props.data.height>162)) {
+        if (props.data.fname !== "" && props.data.lname !== "" && props.data.height !== "" && props.data.height<320 && props.data.height>162 && props.data.position !== "") {
             let arr = {fname:"", lname :"", height:"", position: "" }
             var item = props.data;
             item.id = props.Playerlist.length;
             props.Playerlist.push(item);
             selectInputRef.current.select.clearValue();
             props.setdata(arr);
-            console.log(props.Playerlist, "Playerlist")
         }
+        console.log(props.Playerlist, "Playerlist")
     }
 
     function handlechangeheight(e) {
